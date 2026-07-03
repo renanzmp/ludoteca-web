@@ -1,0 +1,154 @@
+/* frontend/src/App.css */
+
+:root {
+  --bg-color: #121212;
+  --container-bg: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #aaaaaa;
+  --accent-color: #646cff;
+  --accent-hover: #535bf2;
+  --danger-color: #ff4a4a;
+  --danger-hover: #e03131;
+  --border-color: #333333;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+h1 {
+  text-align: center;
+  color: var(--accent-color);
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+h2, h3 {
+  color: var(--text-primary);
+}
+
+/* Formulário */
+.form-container {
+  background-color: var(--container-bg);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.game-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: #2a2a2a;
+  color: white;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+button {
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex: 1;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-cancel {
+  background-color: #333333;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #444444;
+}
+
+/* Lista de Jogos */
+.game-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.game-card {
+  background-color: var(--container-bg);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.game-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
+}
+
+.game-info strong {
+  font-size: 1.2rem;
+  color: var(--accent-color);
+}
+
+.game-info p {
+  margin: 5px 0 0 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  padding: 5px;
+  flex: none;
+}
+
+.btn-icon:hover {
+  transform: scale(1.1);
+}
