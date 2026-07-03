@@ -91,3 +91,6 @@ O banco local possui a tabela principal `Game` com os seguintes atributos:
 Projeto desenvolvido por:
 
 * Renan Martins Pereira
+## Documentação Acadêmica
+
+📄 [Clique aqui para ler o Relatório Técnico completo do Projeto](./docs/Documentação_ludoteca.pdf)
