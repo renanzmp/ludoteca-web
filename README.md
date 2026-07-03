@@ -22,8 +22,8 @@ O projeto adota a separação de responsabilidades e segue a arquitetura MVT/Con
 
 ## Tecnologias Utilizadas
 
-* **Backend:** Python, Django, Django REST Framework, SQLite, django-cors-headers, python-dotenv.
-* **Frontend:** React, Vite, Axios, CSS3.
+* **Backend:** Python, Django.
+* **Frontend:** HTML, CSS3, React.
 * **Controle de Versão:** Git e GitHub.
 
 ## Configuração Obrigatória (.env)
