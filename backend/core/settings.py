@@ -128,3 +128,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173", # Porta padrão do Vite no React
     "http://localhost:3000",
 ]
+
+# Configuração do Django REST Framework para JWT
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
