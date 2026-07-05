@@ -24,10 +24,12 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-DEBUG = 'RENDER' not in os.environ
+# Tenta pegar do Render ou do arquivo .env. Se não achar, usa a chave temporária para o build não travar.
+SECRET_KEY = os.environ.get('SECRET_KEY', 'chave_temporaria_apenas_para_o_build_nao_travar')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG') == 'True'
+# Fica True no seu computador (para ajudar a achar erros) e False no Render (para segurança).
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
