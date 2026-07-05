@@ -123,4 +123,4 @@ Este projeto foi desenvolvido como requisito acadêmico para a disciplina de Lab
 * **Cauã Manuel Proença de Andrade** - 1240109764
 ## Documentação Acadêmica
 
-📄 [Clique aqui para ler o Relatório Técnico completo do Projeto](./docs/Documentação_Ludoteca.pdf)
+📄 [Clique aqui para ler o Relatório Técnico completo do Projeto](./docs/documentação_ludoteca.pdf)
