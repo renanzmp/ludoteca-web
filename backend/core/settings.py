@@ -139,6 +139,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173", # Porta padrão do Vite no React
     "http://localhost:3000",
+    "https://ludoteca-web-blue.vercel.app"
 ]
 
 # Configuração do Django REST Framework para JWT
