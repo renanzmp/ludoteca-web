@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import API from '../services/api';
 
 function Login({ onLoginSuccess, onSwitchToRegister }) {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await API.post('auth/login/', { username, password });
-      // Guarda o token de acesso no navegador
+      // O JWT do Django espera a chave 'username', então passamos o email dentro dela
+      const response = await API.post('auth/login/', { username: email, password });
+      
       localStorage.setItem('token', response.data.access);
-      localStorage.setItem('username', username);
+      // Guardamos o email no localStorage para mostrar no Header do App.jsx
+      localStorage.setItem('username', email); 
       onLoginSuccess();
     } catch (err) {
-      setError('Credenciais inválidas. Tente novamente.');
+      setError('E-mail ou senha incorretos. Tente novamente.');
     }
   };
 
@@ -25,15 +27,15 @@ function Login({ onLoginSuccess, onSwitchToRegister }) {
       {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
         <input 
-          type="text" 
-          placeholder="Nome de utilizador" 
-          value={username} 
-          onChange={(e) => setUsername(e.target.value)} 
+          type="email" 
+          placeholder="Seu E-mail" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
           required 
         />
         <input 
           type="password" 
-          placeholder="Palavra-passe" 
+          placeholder="Senha" 
           value={password} 
           onChange={(e) => setPassword(e.target.value)} 
           required 

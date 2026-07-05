@@ -2,24 +2,25 @@ import React, { useState } from 'react';
 import API from '../services/api';
 
 function Register({ onRegisterSuccess, onSwitchToLogin }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await API.post('auth/register/', { username, password, email });
+      // Agora enviamos 'name', 'email' e 'password'
+      await API.post('auth/register/', { name, email, password });
       setIsError(false);
-      setMessage('Conta criada com sucesso! Redirecionando para o login...');
+      setMessage('Conta criada com sucesso! Redirecionando...');
       setTimeout(() => {
         onRegisterSuccess();
       }, 2000);
     } catch (err) {
       setIsError(true);
-      setMessage('Erro ao criar conta. Escolha outro nome de utilizador.');
+      setMessage('Erro ao criar conta. Este e-mail já pode estar em uso.');
     }
   };
 
@@ -30,25 +31,26 @@ function Register({ onRegisterSuccess, onSwitchToLogin }) {
       <form onSubmit={handleSubmit}>
         <input 
           type="text" 
-          placeholder="Nome de utilizador" 
-          value={username} 
-          onChange={(e) => setUsername(e.target.value)} 
+          placeholder="Seu Nome (Como quer ser chamado)" 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
           required 
         />
         <input 
           type="email" 
-          placeholder="E-mail (Opcional)" 
+          placeholder="Seu melhor E-mail" 
           value={email} 
           onChange={(e) => setEmail(e.target.value)} 
+          required
         />
         <input 
           type="password" 
-          placeholder="Palavra-passe" 
+          placeholder="Senha" 
           value={password} 
           onChange={(e) => setPassword(e.target.value)} 
           required 
         />
-        <button type="submit">Registar</button>
+        <button type="submit">Registrar</button>
       </form>
       <p>
         Já tem uma conta?{' '}
