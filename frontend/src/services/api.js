@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://ludoteca-api-ly90.onrender.com',
+  baseURL: 'https://ludoteca-api-ly90.onrender.com/api/',
 });
 
 // Intercetor para anexar o Token JWT automaticamente em cada requisição
