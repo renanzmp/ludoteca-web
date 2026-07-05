@@ -9,20 +9,29 @@ function Register({ onRegisterSuccess, onSwitchToLogin }) {
   const [isError, setIsError] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      // Agora enviamos 'name', 'email' e 'password'
-      await API.post('auth/register/', { name, email, password });
-      setIsError(false);
-      setMessage('Conta criada com sucesso! Redirecionando...');
-      setTimeout(() => {
-        onRegisterSuccess();
-      }, 2000);
-    } catch (err) {
-      setIsError(true);
-      setMessage('Erro ao criar conta. Este e-mail já pode estar em uso.');
+  e.preventDefault();
+  try {
+    await API.post('auth/register/', { name, email, password });
+    setIsError(false);
+    setMessage('Conta criada com sucesso! Redirecionando...');
+    setTimeout(() => {
+      onRegisterSuccess();
+    }, 2000);
+  } catch (err) {
+    setIsError(true);
+    
+    // Verifica se o backend respondeu com um erro específico (ex: validação do e-mail)
+    if (err.response && err.response.data) {
+      // Extrai a mensagem de erro do Django (pode vir como array ou string)
+      const backendErrors = Object.values(err.response.data).flat().join(" ");
+      setMessage(`Erro no cadastro: ${backendErrors}`);
+    } else {
+      // Se não houver resposta, costuma ser bloqueio de CORS ou servidor fora do ar
+      setMessage('Erro de conexão. Verifique se o backend aceita esta origem (CORS).');
     }
-  };
+    console.error("Detalhes do erro:", err);
+  }
+};
 
   return (
     <div className="auth-container">
