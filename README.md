@@ -4,8 +4,9 @@
 
 Esta é uma aplicação **Full-Stack** segura e moderna para o gerenciamento de um catálogo de jogos. O sistema oferece:
 
+* **Autenticação e Segurança:** Sistema de Login e Registro protegido por **JWT (JSON Web Tokens)**.
+* **Isolamento de Dados (Multi-tenancy):** Cada usuário possui seu próprio ambiente privado, visualizando e gerenciando apenas os jogos que ele mesmo cadastrou.
 * **Armazenamento Permanente:** Operações completas de CRUD integradas ao banco de dados SQLite.
-* **Segurança de Configuração:** Ocultação de chaves sensíveis e configurações de ambiente via `python-dotenv`.
 * **Comunicação RESTful:** API estruturada garantindo o tráfego seguro de dados em formato JSON.
 
 O Backend foi construído em Python com **Django** e **Django REST Framework**, enquanto o Frontend utiliza **React.js** via Vite, entregando um design elegante e responsivo focado na temática de jogos (Dark Theme).
@@ -77,12 +78,17 @@ O banco local possui a tabela principal `Game` com os seguintes atributos:
 
 ## Endpoints e Rotas da API
 
-### Gerenciamento de Jogos (`/api/games/`)
+### Autenticação e Usuários (`/api/auth/`)
+* `POST /api/auth/register/` : Cria uma nova conta de usuário (requer nome, email e senha).
+* `POST /api/auth/login/` : Autentica o usuário no sistema e retorna o Token JWT de acesso.
 
-* `GET /api/games/` : Retorna a lista completa de todos os jogos cadastrados no sistema.
-* `POST /api/games/` : Salva um novo jogo no banco de dados.
-* `PUT /api/games/{id}/` : Atualiza todos os dados de um jogo específico selecionado pelo ID.
-* `DELETE /api/games/{id}/` : Remove permanentemente o registro do jogo do banco de dados.
+### Gerenciamento de Jogos (`/api/games/`)
+*(Requer Token JWT no cabeçalho `Authorization: Bearer <token>`)*
+
+* `GET /api/games/` : Retorna a lista de jogos do usuário logado.
+* `POST /api/games/` : Salva um novo jogo associado à conta do usuário.
+* `PUT /api/games/{id}/` : Atualiza os dados de um jogo específico.
+* `DELETE /api/games/{id}/` : Remove permanentemente o jogo do banco de dados.
 
 ---
 
@@ -90,7 +96,10 @@ O banco local possui a tabela principal `Game` com os seguintes atributos:
 
 Projeto desenvolvido por:
 
-* Renan Martins Pereira
+* Renan Martins Pereira - 1240110606
+* Vitor Antônio Henriques Negreiros - 1240109245
+* Gustavo Rangel Valente - 1240110185
+* Cauã Manuel Proença de Andrade -1240109764 
 ## Documentação Acadêmica
 
 📄 [Clique aqui para ler o Relatório Técnico completo do Projeto](./docs/Documentação_ludoteca.pdf)
