@@ -129,6 +129,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Permite que o frontend (porta 3000 ou 5173 do Vite) acesse nossa API
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173", # Porta padrão do Vite no React
