@@ -1,105 +1,126 @@
-# Ludoteca Web - Catálogo de Jogos (Full-Stack)
+# 🎮 Ludoteca Web
 
-## Visão Geral
-
-Esta é uma aplicação **Full-Stack** segura e moderna para o gerenciamento de um catálogo de jogos. O sistema oferece:
-
-* **Autenticação e Segurança:** Sistema de Login e Registro protegido por **JWT (JSON Web Tokens)**.
-* **Isolamento de Dados (Multi-tenancy):** Cada usuário possui seu próprio ambiente privado, visualizando e gerenciando apenas os jogos que ele mesmo cadastrou.
-* **Armazenamento Permanente:** Operações completas de CRUD integradas ao banco de dados SQLite.
-* **Comunicação RESTful:** API estruturada garantindo o tráfego seguro de dados em formato JSON.
-
-O Backend foi construído em Python com **Django** e **Django REST Framework**, enquanto o Frontend utiliza **React.js** via Vite, entregando um design elegante e responsivo focado na temática de jogos (Dark Theme).
-
-## Estrutura da Arquitetura
-
-O projeto adota a separação de responsabilidades e segue a arquitetura MVT/Controller no backend:
-
-* `backend/games/models.py` → Tabelas e modelagem do Banco de Dados (`Game`).
-* `backend/games/serializers.py` → Validação de entrada e conversão de dados complexos para JSON.
-* `backend/games/views.py` → Controllers contendo a lógica dos endpoints da API.
-* `backend/games/tests.py` → Testes automatizados dos endpoints HTTP.
-* `frontend/src/services/api.js` → Configuração do cliente HTTP (Axios) para comunicação com o servidor.
-
-## Tecnologias Utilizadas
-
-* **Backend:** Python, Django.
-* **Frontend:** HTML, CSS3, React.
-* **Controle de Versão:** Git e GitHub.
-
-## Configuração Obrigatória (.env)
-
-O sistema exige a configuração de variáveis de ambiente para rodar com segurança. Crie um arquivo chamado `.env` dentro da pasta `backend/` contendo:
-
-```env
-SECRET_KEY=django-insecure-sua_chave_secreta_aqui
-DEBUG=True
-```
-
-## Como Executar
-
-### 1. Subindo o Backend (Django)
-
-Abra o seu terminal, navegue até a pasta `backend/` e execute os comandos abaixo:
-
-```bash
-# Crie e ative seu ambiente virtual
-python -m venv venv
-# (No Windows)
-venv\Scripts\activate
-
-# Instale todas as dependências do projeto
-pip install -r requirements.txt
-
-# Crie as tabelas no banco de dados SQLite
-python manage.py migrate
-
-# Inicie o servidor Python
-python manage.py runserver
-```
-
-### 2. Subindo o Frontend (React)
-
-Abra um novo terminal, navegue até a pasta `frontend/` e execute:
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-*(O Vite encaminha automaticamente a aplicação para a porta 5173, consumindo a API na porta 8000).*
-
-## Estrutura do Banco de Dados (SQLite)
-
-O banco local possui a tabela principal `Game` com os seguintes atributos:
-
-* `id` (PK), `title`, `genre`, `developer`, `release_date`, `created_at`.
-
-## Endpoints e Rotas da API
-
-### Autenticação e Usuários (`/api/auth/`)
-* `POST /api/auth/register/` : Cria uma nova conta de usuário (requer nome, email e senha).
-* `POST /api/auth/login/` : Autentica o usuário no sistema e retorna o Token JWT de acesso.
-
-### Gerenciamento de Jogos (`/api/games/`)
-*(Requer Token JWT no cabeçalho `Authorization: Bearer <token>`)*
-
-* `GET /api/games/` : Retorna a lista de jogos do usuário logado.
-* `POST /api/games/` : Salva um novo jogo associado à conta do usuário.
-* `PUT /api/games/{id}/` : Atualiza os dados de um jogo específico.
-* `DELETE /api/games/{id}/` : Remove permanentemente o jogo do banco de dados.
+> **Sua coleção, sob o seu controle.**
+> Uma aplicação Full-Stack segura e moderna para o gerenciamento de um catálogo pessoal de jogos, desenvolvida para garantir que cada usuário tenha seu próprio ambiente privado.
 
 ---
 
-## Autores
+## 🚀 Visão Geral
 
-Projeto desenvolvido por:
+O sistema oferece as seguintes funcionalidades principais:
 
-* Renan Martins Pereira - 1240110606
-* Vitor Antônio Henriques Negreiros - 1240109245
-* Gustavo Rangel Valente - 1240110185
-* Cauã Manuel Proença de Andrade -1240109764 
+* 🔐 **Autenticação e Segurança:** Sistema de Login e Registro protegido por **JWT (JSON Web Tokens)**, garantindo sessões seguras sem armazenamento de estado no servidor.
+* 🛡️ **Isolamento de Dados (Multi-tenancy):** Cada usuário possui seu próprio ambiente privado, visualizando, editando e excluindo apenas os jogos que ele mesmo cadastrou.
+* 💾 **Armazenamento Permanente:** Operações completas de CRUD integradas ao banco de dados (SQLite em ambiente local e PostgreSQL em produção).
+* 📡 **Comunicação RESTful:** API estruturada garantindo o tráfego seguro de dados em formato JSON entre o cliente e o servidor.
+
+---
+
+## 💻 Tecnologias Utilizadas
+
+### 🎨 Frontend
+* **React** (Interface de Usuário)
+* **Vite** (Bundler e Servidor de Desenvolvimento)
+* **Axios** (Requisições HTTP)
+* **CSS3** (Estilização Dark Theme)
+
+### ⚙️ Backend
+* **Python 3.12+** (Linguagem Principal)
+* **Django & Django REST Framework (DRF)** (Construção da API)
+* **djangorestframework-simplejwt** (Autenticação)
+* **PostgreSQL** (Banco de Dados em Produção)
+* **Gunicorn & WhiteNoise** (Servidor WSGI e Gerenciamento de Estáticos)
+
+### ☁️ Deploy e Infraestrutura
+* **Frontend:** Vercel
+* **Backend e Banco de Dados:** Render
+
+---
+
+## 🛠️ Como executar o projeto localmente
+
+### 📌 Pré-requisitos
+Certifique-se de ter instalado em sua máquina:
+* `Python` (versão 3.12 ou superior)
+* `Node.js` e `npm`
+* `Git`
+
+### 1️⃣ Clonando o repositório
+Abra o seu terminal e execute:
+```bash
+git clone [https://github.com/renanzmp/ludoteca-web.git](https://github.com/renanzmp/ludoteca-web.git)
+cd ludoteca-web
+```
+
+### 2️⃣ Configurando o Backend (API Django)
+```bash
+cd backend
+
+# Crie e ative o ambiente virtual
+python -m venv venv
+source venv/bin/activate  # No Windows, utilize: venv\Scripts\activate
+
+# Instale as dependências do projeto
+pip install -r requirements.txt
+```
+
+**Configurando as Variáveis de Ambiente:**
+Crie um arquivo chamado `.env` dentro da pasta `backend` (no mesmo nível do arquivo `manage.py`) e adicione:
+```env
+SECRET_KEY=uma_chave_secreta_qualquer_para_testes
+DEBUG=True
+```
+
+**Criando o banco de dados e rodando o servidor:**
+```bash
+python manage.py migrate
+python manage.py runserver
+```
+📍 *A API estará disponível em `http://localhost:8000/api/`.*
+
+### 3️⃣ Configurando o Frontend (React/Vite)
+Abra uma **nova aba** no seu terminal (mantenha o servidor do backend rodando) e execute:
+```bash
+cd frontend
+
+# Instale as dependências do Node
+npm install
+
+# Inicie o servidor de desenvolvimento
+npm run dev
+```
+📍 *A interface gráfica estará disponível em `http://localhost:5173`.*
+
+---
+
+## 📡 Endpoints e Rotas da API
+
+### 🔑 Autenticação e Usuários (`/api/auth/`)
+| Método | Rota | Descrição |
+|---|---|---|
+| `POST` | `/api/auth/register/` | Cria uma nova conta de usuário. |
+| `POST` | `/api/auth/login/` | Autentica o usuário e retorna o Token JWT. |
+
+### 🕹️ Gerenciamento de Jogos (`/api/games/`)
+*(Requer Token JWT no cabeçalho `Authorization: Bearer <token>`)*
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/api/games/` | Retorna a lista de jogos do usuário logado. |
+| `POST` | `/api/games/` | Salva um novo jogo na conta do usuário. |
+| `PUT` | `/api/games/{id}/` | Atualiza os dados de um jogo específico. |
+| `DELETE` | `/api/games/{id}/` | Remove o jogo do banco de dados permanentemente. |
+
+---
+
+## 👨‍💻 Autores
+
+Este projeto foi desenvolvido como requisito acadêmico para a disciplina de Laboratório de Desenvolvimento de Software da **Universidade Veiga de Almeida (UVA)** pelos alunos:
+
+* **Renan Martins Pereira** - 1240110606
+* **Vitor Antônio Henriques Negreiros** - 1240109245
+* **Gustavo Rangel Valente** - 1240110185
+* **Cauã Manuel Proença de Andrade** - 1240109764
 ## Documentação Acadêmica
 
-📄 [Clique aqui para ler o Relatório Técnico completo do Projeto](./docs/Documentação_ludoteca.pdf)
+📄 [Clique aqui para ler o Relatório Técnico completo do Projeto](./docs/Documentação_Ludoteca.pdf)
