@@ -1,7 +1,7 @@
 # 🎮 Ludoteca Web
 
 > **Sua coleção, sob o seu controle.**
-> Uma aplicação Full-Stack segura e moderna para o gerenciamento de um catálogo pessoal de jogos, desenvolvida para garantir que cada usuário tenha seu próprio ambiente privado.
+> Uma aplicação Full-Stack segura e moderna para o gerenciamento de um catálogo pessoal de jogos, desenvolvida para garantir que cada usuário tenha seu próprio ambiente privado e seguro.
 
 ---
 
